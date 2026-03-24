@@ -2,16 +2,25 @@
 
 import React, { useState } from 'react';
 import { 
-  Terminal, Cpu, Shield, Database, Globe, Zap, 
-  Bot, Settings, Code2, MessageCircle, Mail, ArrowRight
+  Terminal, 
+  Cpu, 
+  Shield, 
+  Database, 
+  Bot, 
+  Settings, 
+  Code2, 
+  MessageCircle, 
+  Phone 
 } from 'lucide-react';
 
 export default function AgencyLanding() {
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = useState('es');
 
-  // Replace with your actual data
-  const phone = "573054296065"; // Format: CountryCode + Number
-  const email = "contact@vantixengineering.com";
+  // CONFIGURATION: 
+  // phoneLink: Needs country code (57) and NO spaces for WhatsApp
+  // phoneDisplay: Updated to 305 429 60 65
+  const phoneLink = "573054296065"; 
+  const phoneDisplay = "305 429 60 65"; 
 
   const content = {
     en: {
@@ -27,9 +36,8 @@ export default function AgencyLanding() {
       s5: { t: "Industrial Design", d: "Mechanical modeling and chassis design using Creo Parametric and GrabCAD." },
       s6: { t: "Full-Stack Dev", d: "Scalable web applications built with Next.js, Java, C#, and SQL/Oracle." },
       contactTitle: "Ready to Start a Project?",
-      contactDesc: "Contact our engineering team today for a technical consultation.",
+      contactDesc: "Reach out to our engineering team for a technical consultation.",
       ctaWhatsapp: "Chat on WhatsApp",
-      ctaEmail: "Send an Email",
       footer: "Vantix Engineering Group © 2026 - Innovation in Motion."
     },
     es: {
@@ -47,7 +55,6 @@ export default function AgencyLanding() {
       contactTitle: "¿Listo para iniciar un proyecto?",
       contactDesc: "Contacte a nuestro equipo de ingeniería hoy para una consulta técnica.",
       ctaWhatsapp: "Hablar por WhatsApp",
-      ctaEmail: "Enviar Correo",
       footer: "Vantix Engineering Group © 2026 - Innovación en Movimiento."
     }
   };
@@ -57,7 +64,7 @@ export default function AgencyLanding() {
   return (
     <div className="min-h-screen bg-[#020617] text-slate-100 font-sans scroll-smooth">
       {/* Navigation */}
-      <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center sticky top-0 bg-[#020617]/80 backdrop-blur-md z-50">
+      <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center sticky top-0 bg-[#020617]/80 backdrop-blur-md z-50 border-b border-slate-800/50">
         <div className="flex items-center gap-2">
           <Terminal className="text-blue-500" size={28} />
           <span className="text-xl font-bold tracking-tighter uppercase">VANTIX <span className="text-blue-500">ENG</span></span>
@@ -75,7 +82,7 @@ export default function AgencyLanding() {
         </div>
       </nav>
 
-      {/* Hero */}
+      {/* Hero Section */}
       <header className="py-24 px-6 text-center">
         <h1 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter italic">
           {t.heroTitle} <br/><span className="text-blue-600 not-italic">{t.heroSubtitle}</span>
@@ -102,26 +109,29 @@ export default function AgencyLanding() {
           <h2 className="text-4xl font-bold mb-4">{t.contactTitle}</h2>
           <p className="text-slate-400 mb-10">{t.contactDesc}</p>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="flex flex-col items-center gap-8">
+            {/* Visual Display of Number */}
+            <div className="flex items-center gap-4 bg-slate-900/50 px-8 py-4 rounded-2xl border border-slate-800 group hover:border-blue-500/50 transition-all">
+              <Phone className="text-blue-500 animate-pulse" size={24} />
+              <span className="text-2xl md:text-3xl font-mono font-bold tracking-widest text-white">
+                {phoneDisplay}
+              </span>
+            </div>
+
+            {/* WhatsApp Link */}
             <a 
-              href={`https://wa.me/${phone}`} 
+              href={`https://wa.me/${phoneLink}`} 
               target="_blank"
-              className="flex items-center justify-center gap-3 px-8 py-4 bg-[#25D366] text-white font-bold rounded-2xl hover:scale-105 transition-transform"
+              className="flex items-center justify-center gap-3 px-10 py-4 bg-[#25D366] text-white font-bold rounded-2xl hover:scale-105 transition-all shadow-lg shadow-green-500/20"
             >
               <MessageCircle size={20} />
               {t.ctaWhatsapp}
-            </a>
-            <a 
-              href={`mailto:${email}`}
-              className="flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-2xl hover:scale-105 transition-transform"
-            >
-              <Mail size={20} />
-              {t.ctaEmail}
             </a>
           </div>
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="py-12 text-center border-t border-slate-900">
         <div className="flex justify-center gap-8 mb-6 opacity-30 grayscale text-xs font-mono tracking-widest">
           <span>PYTHON</span> <span>REACT</span> <span>SQL</span> <span>ARDUINO</span>
